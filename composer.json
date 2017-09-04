@@ -1,0 +1,13 @@
+{
+    "name": "sf/dd",
+    "authors": [
+        {
+            "name": "nine",
+            "email": "nine@segmentfault.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": { "dd\\": "src/" }
+    }
+}

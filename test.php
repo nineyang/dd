@@ -5,6 +5,6 @@
  * Time: 下午9:35
  */
 
-require_once 'Dump.php';
+require 'vendor/autoload.php';
 
-\dd\Dump::dump('aaa');
+var_dump(new \dd\Dump());
