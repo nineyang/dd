@@ -13,13 +13,18 @@ namespace dd;
  */
 class Dump
 {
-    public function parse()
+    protected function parse()
     {
 
     }
 
-    public function dispatch()
+    protected function dispatch()
     {
 
+    }
+
+    static public function dump($value)
+    {
+        var_dump($value);
     }
 }
