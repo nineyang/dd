@@ -7,4 +7,5 @@
 
 require 'vendor/autoload.php';
 
-var_dump(new \dd\Dump());
+//string
+\dd\Dump::dump('helloworld');

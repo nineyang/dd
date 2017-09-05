@@ -13,8 +13,8 @@ namespace dd\render;
  */
 class DumpString extends AbstractDump
 {
-    public function render()
+    public function render($value)
     {
-        // TODO: Implement render() method.
+        var_dump($value);
     }
 }

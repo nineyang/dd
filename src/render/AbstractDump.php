@@ -11,7 +11,7 @@ namespace dd\render;
  * Class AbstractDump
  * @package dd\render
  */
-abstract class AbstractDump implements Dump
+abstract class AbstractDump
 {
 
 }
