@@ -30,9 +30,11 @@ class DumpString extends AbstractDump
         $this->value = $value;
     }
 
+
     public function render()
     {
         $decorator = new Span($this);
-        $decorator->display();
+        $decorator->addClass('nine-span')
+            ->show();
     }
 }

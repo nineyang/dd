@@ -26,6 +26,11 @@ abstract class DecoratorComponent
     protected $_tail;
 
     /**
+     * @var array
+     */
+    public $classList = [];
+
+    /**
      * @var AbstractDump
      */
     public $dump;
@@ -36,12 +41,55 @@ abstract class DecoratorComponent
      */
     public function __construct(AbstractDump $dump)
     {
-        $parts = explode("\\", static::class);
-        $class = strtolower(array_pop($parts));
-        $this->_head = "<" . $class . ">";
-        $this->_tail = "</" . $class . ">";
         $this->dump = $dump;
+        $this->initStyle();
     }
 
+    /**
+     * 初始化css
+     */
+    protected function initStyle()
+    {
+        $config = require_once __DIR__ . '/../conf/css.php';
+        $styleStr = "<style>";
+        if (!empty($config)) {
+            foreach ($config as $k => $v) {
+                $styleStr .= $k . "{" . $v . "}";
+            }
+            $styleStr .= "</style>";
+        }
+        echo $styleStr;
+    }
+
+    /**
+     * 添加样式
+     * @param $className
+     * @return $this
+     */
+    public function addClass($className)
+    {
+        array_push($this->classList, $className);
+        return $this;
+    }
+
+    /**
+     * 添加css并转发给display
+     * @return mixed
+     */
+    public function show()
+    {
+//        设置tag
+        $parts = explode("\\", static::class);
+        $class = strtolower(array_pop($parts));
+//        设置class
+        $classStr = implode(' ', $this->classList);
+        $this->_head = "<" . $class . " class='$classStr'>";
+        $this->_tail = "</" . $class . ">";
+        return static::display();
+    }
+
+    /**
+     * @return mixed
+     */
     abstract public function display();
 }
