@@ -59,9 +59,9 @@ class Dump
         if (!$flectionClass->hasMethod($this->_method)) {
             throw new Exception("$class must has method render");
         }
-//        todo 如果方法以后有不同的参数，可以调用getParameters()来判断获取参数
+//        todo 如果方法以后有不同的参数的需求，可以调用getParameters()来判断获取参数
         $flectionMethod = new ReflectionMethod($class, $this->_method);
-        $flectionMethod->invokeArgs($flectionClass->newInstance(), [$value]);
+        $flectionMethod->invokeArgs($flectionClass->newInstance($value), []);
     }
 
     /**

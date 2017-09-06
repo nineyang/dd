@@ -13,5 +13,5 @@ namespace dd\render;
  */
 abstract class AbstractDump
 {
-
+    abstract public function render();
 }

@@ -7,14 +7,32 @@
 
 namespace dd\render;
 
+use dd\decorator\Span;
+
 /**
  * Class DumpString
  * @package dd\render
  */
 class DumpString extends AbstractDump
 {
-    public function render($value)
+
+    /**
+     * @var
+     */
+    public $value;
+
+    /**
+     * DumpString constructor.
+     * @param $value
+     */
+    public function __construct($value)
     {
-        var_dump($value);
+        $this->value = $value;
+    }
+
+    public function render()
+    {
+        $decorator = new Span($this);
+        $decorator->display();
     }
 }
