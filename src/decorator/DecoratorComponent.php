@@ -36,10 +36,9 @@ abstract class DecoratorComponent
     public $dump;
 
     /**
-     * DecoratorComponent constructor.
      * @param AbstractDump $dump
      */
-    public function __construct(AbstractDump $dump)
+    public function __construct($dump)
     {
         $this->dump = $dump;
         $this->initStyle();
@@ -50,7 +49,7 @@ abstract class DecoratorComponent
      */
     protected function initStyle()
     {
-        $config = require_once __DIR__ . '/../conf/css.php';
+        $config = require __DIR__ . '/../conf/css.php';
         $styleStr = "<style>";
         if (!empty($config)) {
             foreach ($config as $k => $v) {
@@ -73,6 +72,16 @@ abstract class DecoratorComponent
     }
 
     /**
+     * 清除已经存在的样式列表
+     * @return $this
+     */
+    public function clearClass()
+    {
+        $this->classList = [];
+        return $this;
+    }
+
+    /**
      * 添加css并转发给display
      * @return mixed
      */
@@ -85,10 +94,11 @@ abstract class DecoratorComponent
         $classStr = implode(' ', $this->classList);
         $this->_head = "<" . $class . " class='$classStr'>";
         $this->_tail = "</" . $class . ">";
-        return static::display();
+        return static::wrap();
     }
 
     /**
+     * 用引号包裹
      * @param $value
      * @return string
      */
@@ -98,6 +108,16 @@ abstract class DecoratorComponent
     }
 
     /**
+     * 用中括号包裹
+     * @param $value
+     */
+    public function withBracket($value)
+    {
+
+    }
+
+    /**
+     * 没有包裹的标签
      * @param $value
      * @return string
      */

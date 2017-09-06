@@ -8,10 +8,10 @@
 namespace dd\decorator;
 
 /**
- * Class Span
+ * Class P
  * @package dd\decorator
  */
-class Span extends DecoratorComponent
+class P extends DecoratorComponent
 {
 
     /**
@@ -19,7 +19,7 @@ class Span extends DecoratorComponent
      */
     public function wrap()
     {
-        $this->value = $this->withQuota($this->noWrap($this->dump->value));
+        $this->value = $this->noWrap($this->dump->value);
         return $this;
     }
 
