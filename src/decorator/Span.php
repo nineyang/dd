@@ -16,7 +16,6 @@ class Span extends DecoratorComponent
 
     public function display()
     {
-        echo "<style>.test{color:red;}</style>";
-        echo $this->_head . $this->dump->value . $this->_tail;
+        echo $this->withQuota($this->noWrap($this->dump->value));
     }
 }

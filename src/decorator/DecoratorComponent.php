@@ -89,6 +89,24 @@ abstract class DecoratorComponent
     }
 
     /**
+     * @param $value
+     * @return string
+     */
+    public function withQuota($value)
+    {
+        return '"' . $value . '"';
+    }
+
+    /**
+     * @param $value
+     * @return string
+     */
+    public function noWrap($value)
+    {
+        return $this->_head . $value . $this->_tail;
+    }
+
+    /**
      * @return mixed
      */
     abstract public function display();

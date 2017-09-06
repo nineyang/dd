@@ -30,7 +30,9 @@ class DumpString extends AbstractDump
         $this->value = $value;
     }
 
-
+    /**
+     *
+     */
     public function render()
     {
         $decorator = new Span($this);
