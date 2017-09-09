@@ -84,6 +84,9 @@ abstract class AbstractDump
      */
     public function returnValue($value = '', $type = 'span', $classArr = ['nine-span'], $params = ['withQuota' => true])
     {
+        if (is_array($value)) {
+            return implode('', $value);
+        }
         return ($this->returnDecorator($type, $classArr, $value, $params))->value;
     }
 
@@ -131,7 +134,6 @@ abstract class AbstractDump
         }
 
         $divDecorator->display();
-        die();
     }
 
     /**

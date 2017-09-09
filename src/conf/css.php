@@ -10,9 +10,10 @@ return [
     '.black-color' => "color:#333333",
     '.gray-color' => "color:#ccc",
     '.font-12' => 'font-size:12px',
-    '.depth-1' => 'margin-left:10px',
-    '.depth-2' => 'margin-left:20px',
-    '.depth-3' => 'margin-left:30px',
-    '.depth-4' => 'margin-left:40px',
+    '.depth-0' => 'margin-left:0px',
+    '.depth-1' => 'margin-left:1rem',
+    '.depth-2' => 'margin-left:2rem',
+    '.depth-3' => 'margin-left:3rem',
+    '.depth-4' => 'margin-left:4rem',
     '.nine-div' => 'margin-left:10px;margin-top:10px;'
 ];

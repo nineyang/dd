@@ -26,34 +26,37 @@ class DumpArray extends AbstractDump
     public function __construct($value)
     {
         parent::__construct($value);
-        $this->_stack = [];
     }
 
     public function render()
     {
-        $this->parseArr($this->value);
-        $this->display($this->_stack);
+        $this->display($this->parseArr($this->value));
     }
 
     protected function parseArr(array $arr, $depth = 1)
     {
 //        首先导入array
-        $this->_stack[] = $this->returnValue("array:" . count($arr), 'span', ['nine-span'], ['withQuota' => false]);
+        $returnArr = [];
+        $returnArr[] = $this->returnValue("array:" . count($arr), 'span', ['nine-span'], ['withQuota' => false]);
 //        导入一个[
-        $this->_stack[] = $this->_leftBracket;
+        $returnArr[] = $this->_leftBracket;
 //        导入一个▶
-        $this->_stack[] = $this->_triangle;
-
+        $returnArr[] = $this->_triangle;
+        $pushValue = "";
         foreach ($arr as $key => $value) {
-            if (is_array($value)) self::parseArr($value, ++$depth);
-//            拼接key和value
+            //            拼接key和value
             $key = $this->returnValue($key, 'span', ['nine-span'], ['withQuota' => is_int($key) ? false : true]);
-            $value = $this->returnValue($value);
-            $pushValue = $key . $this->_needle . $value;
-//            外层包裹一个p
-            array_push($this->_stack, $this->returnValue($pushValue, 'p' , ["depth-$depth"]));
+            if (is_array($value)) {
+                $value = $this->returnValue(self::parseArr($value, $depth + 1));
+            } else {
+                $value = $this->returnValue($value);
+            }
+            $pushValue .= $key . $this->_needle . $value . "</br>";
         }
-//        导入一个]
-        $this->_stack[] = $this->_rightBracket;
+        //            外层包裹一个p
+        $returnArr[] = $this->returnValue($pushValue, 'p', ["depth-" . $depth]);
+        $devideSpan = $this->returnValue("", 'span', ["depth-" . ($depth - 1)], ['withQuota' => false]);
+        $returnArr[] = $devideSpan . $this->_rightBracket;
+        return $returnArr;
     }
 }
