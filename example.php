@@ -8,7 +8,7 @@
 require 'vendor/autoload.php';
 
 //string
-\dd\Dump::dump('helloworld');
+//\dd\Dump::dump('helloworld');
 
 //array
-//\dd\Dump::dump(['hello', 'world' => 'nine']);
+\dd\Dump::dump(['hello', 'world' => 'nine']);

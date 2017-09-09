@@ -7,8 +7,6 @@
 
 namespace dd\render;
 
-use dd\decorator\Span;
-
 /**
  * Class DumpString
  * @package dd\render

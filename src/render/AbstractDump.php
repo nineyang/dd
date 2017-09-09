@@ -7,9 +7,6 @@
 
 namespace dd\render;
 
-use dd\decorator\DecoratorComponent;
-use ReflectionClass;
-
 /**
  * Class AbstractDump
  * @package dd\render
@@ -58,7 +55,7 @@ abstract class AbstractDump
     public function __construct($value)
     {
         $this->value = $value;
-//        $this->init();
+        $this->init();
     }
 
     /**
@@ -123,12 +120,17 @@ abstract class AbstractDump
         } elseif ($value == '') {
             $value = $this->value;
         }
-//        如果为空就代表已经拼接好了，直接输出
+
+//       此时为空代表已经拼接好
         if (is_null($type)) {
-            echo $value;
-            die();
+            $divDecorator = $this->returnDecorator('div', ['nine-div'], $value);
+        } else {
+            $typeDecorator = $this->returnDecorator($type, $classArr, $value, $params);
+
+            $divDecorator = $this->returnDecorator('div', ['nine-div'], $typeDecorator->value);
         }
-        echo ($this->returnDecorator($type, $classArr, $value, $params))->display();
+
+        $divDecorator->display();
         die();
     }
 
