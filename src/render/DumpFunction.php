@@ -15,5 +15,6 @@ class DumpFunction extends AbstractDump
 {
     public function render()
     {
+
     }
 }
