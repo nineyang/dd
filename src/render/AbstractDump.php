@@ -62,6 +62,8 @@ abstract class AbstractDump
                 $decorator->addClass($class);
             }
         }
+//        因为是单例，所以这里的value需要重新修改一下
+        $decorator->value = $value;
         return $decorator->addDecorator($params);
     }
 
@@ -71,8 +73,12 @@ abstract class AbstractDump
      * @param string $value
      * @param array $params
      */
-    public function display($type, $classArr = [], $value, $params = [])
+    public function display($value, $type = null, $classArr = [], $params = [])
     {
+        if (is_null($type)) {
+            echo $value;
+            die();
+        }
         if (is_array($value)) {
             $value = implode('', $value);
         }

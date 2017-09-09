@@ -6,5 +6,6 @@
  */
 
 return [
-    '.nine-span' => "color:#df5000;font-size:12px;font-family:monospace;"
+    '.nine-span' => "color:#df5000;font-size:12px;font-family:monospace;",
+    '.black-color' => "color:#333333"
 ];

@@ -114,7 +114,16 @@ abstract class DecoratorComponent
      */
     public function withBracket($value)
     {
+//    todo 这里后面看看是否需要单独提炼出来
+    }
 
+    /**
+     * @param $name
+     * @param $value
+     */
+    public function __set($name, $value)
+    {
+        $this->$name = $value;
     }
 
     /**

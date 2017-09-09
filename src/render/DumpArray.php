@@ -15,9 +15,34 @@ namespace dd\render;
 class DumpArray extends AbstractDump
 {
 
+    /**
+     * @var
+     */
+    public $_title;
+
+    /**
+     * @var
+     */
+    public $_leftBracket;
+
+    /**
+     * @var
+     */
+    public $_rightBracket;
+
+    /**
+     * DumpArray constructor.
+     * @param $value
+     */
     public function __construct($value)
     {
         parent::__construct($value);
+        $this->_title = $this->returnValue('span' , ['nine-span'] , "array:" . count($this->value));
+        $this->_leftBracket = $this->returnValue('span' , ['nine-span' , 'black-color'] , "[");
+        $this->_rightBracket = $this->returnValue('span' , ['nine-span' , 'black-color'] , "]");
+
+        $this->display($this->_leftBracket);
+
     }
 
     public function render()
