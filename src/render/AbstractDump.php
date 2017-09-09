@@ -58,7 +58,7 @@ abstract class AbstractDump
     public function __construct($value)
     {
         $this->value = $value;
-        $this->init();
+//        $this->init();
     }
 
     /**
@@ -116,9 +116,13 @@ abstract class AbstractDump
      * @param array $classArr
      * @param array $params
      */
-    public function display($value, $type = null, $classArr = [], $params = [])
+    public function display($value = '', $type = null, $classArr = [], $params = [])
     {
-        if (is_array($value)) $value = implode('', $value);
+        if (is_array($value)) {
+            $value = implode('', $value);
+        } elseif ($value == '') {
+            $value = $this->value;
+        }
 //        如果为空就代表已经拼接好了，直接输出
         if (is_null($type)) {
             echo $value;
