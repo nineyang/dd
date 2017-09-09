@@ -49,6 +49,18 @@ abstract class AbstractDump
     public $_needle;
 
     /**
+     * @return "{"
+     * @var
+     */
+    public $_leftBraces;
+
+    /**
+     * @return "}"
+     * @var
+     */
+    public $_rightBraces;
+
+    /**
      * DumpString constructor.
      * @param $value
      */
@@ -68,6 +80,8 @@ abstract class AbstractDump
         $this->_triangle = $this->returnValue("▶", 'span', ['nine-span', 'gray-color', 'font-12'], ['withQuota' => false]);
         $this->_invertedTriangle = $this->returnValue("▼", 'span', ['nine-span', 'gray-color'], ['withQuota' => false]);
         $this->_needle = $this->returnValue("=>", 'span', ['nine-span', 'black-color'], ['withQuota' => false]);
+        $this->_leftBraces = $this->returnValue("{", 'span', ['nine-span', 'black-color'], ['withQuota' => false]);
+        $this->_rightBraces = $this->returnValue("}", 'span', ['nine-span', 'black-color'], ['withQuota' => false]);
     }
 
     /**

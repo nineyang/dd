@@ -7,6 +7,8 @@
 
 namespace dd\render;
 
+use Closure;
+
 /**
  * Class DumpObject
  * @package dd\render
@@ -15,7 +17,12 @@ class DumpObject extends AbstractDump
 {
     public function render()
     {
-        // TODO: Implement render() method.
+//        判断是函数还是对象
+        if ($this->value instanceof Closure) {
+
+        } else {
+
+        }
     }
 
 }

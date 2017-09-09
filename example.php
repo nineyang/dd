@@ -11,4 +11,12 @@ require 'vendor/autoload.php';
 //\dd\Dump::dump('helloworld');
 
 //array
-\dd\Dump::dump(['hello', 'world' => ['aa' , 'bb' => ['cc' , 'dd']]]);
+//\dd\Dump::dump(['hello', 'world' => ['aa' , 'bb' => ['cc' , 'dd']]]);
+
+//function
+\dd\Dump::dump(function ($name = 'nine') {
+    echo $name;
+});
+
+//object
+//\dd\Dump::dump(new stdClass());
