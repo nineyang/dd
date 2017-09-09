@@ -71,9 +71,13 @@ abstract class AbstractDump
      * @param string $value
      * @param array $params
      */
-    public function display($type, $classArr = [], $value = '', $params = [])
+    public function display($type, $classArr = [], $value, $params = [])
     {
+        if (is_array($value)) {
+            $value = implode('', $value);
+        }
         echo ($this->returnDecorator($type, $classArr, $value, $params))->display();
+        die();
     }
 
     /**
