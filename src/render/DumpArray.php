@@ -18,11 +18,10 @@ class DumpArray extends AbstractDump
     public function __construct($value)
     {
         parent::__construct($value);
-        $this->value = "array:" . count($this->value);
     }
 
     public function render()
     {
-        $this->span($this)->addClass('nine-span')->addDecorator(['withQuota' => false])->display();
+
     }
 }

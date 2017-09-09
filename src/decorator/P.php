@@ -19,7 +19,7 @@ class P extends DecoratorComponent
      */
     public function wrap()
     {
-        $this->value = $this->noWrap($this->dump->value);
+        $this->value = $this->noWrap($this->value);
         return $this;
     }
 

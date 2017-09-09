@@ -36,12 +36,53 @@ abstract class AbstractDump
     protected $_decorator = [];
 
     /**
+     * @param $type
+     * @param array $classArr
+     * @param array $params
+     * @param string $value
+     * @return mixed
+     */
+    public function returnValue($type, $classArr = [], $value = '', $params = [])
+    {
+        return ($this->returnDecorator($type, $classArr, $value, $params))->value;
+    }
+
+    /**
+     * @param $type
+     * @param array $classArr
+     * @param array $params
+     * @param string $value
+     * @return mixed
+     */
+    protected function returnDecorator($type, $classArr = [], $value = '', $params = [])
+    {
+        $decorator = $this->{$type}($value ?: $this->value);
+        if (!empty($classArr)) {
+            foreach ($classArr as $class) {
+                $decorator->addClass($class);
+            }
+        }
+        return $decorator->addDecorator($params);
+    }
+
+    /**
+     * @param $type
+     * @param array $classArr
+     * @param string $value
+     * @param array $params
+     */
+    public function display($type, $classArr = [], $value = '', $params = [])
+    {
+        echo ($this->returnDecorator($type, $classArr, $value, $params))->display();
+    }
+
+    /**
      * @param $decorator
      * @return \dd\decorator\DecoratorComponent
      */
     public function __get($decorator)
     {
-        array_key_exists($decorator, $this->_decorator) ?: $this->_decorator[$decorator] = $this->withObject("dd\\decorator\\" . ucfirst($decorator), $this);
+        array_key_exists($decorator, $this->_decorator) ?: $this->_decorator[$decorator] = $this->withObject("dd\\decorator\\" . ucfirst($decorator), $this->value);
         return $this->_decorator[$decorator];
     }
 

@@ -33,14 +33,15 @@ abstract class DecoratorComponent
     /**
      * @var AbstractDump
      */
-    public $dump;
+    public $value;
 
     /**
-     * @param AbstractDump $dump
+     * DecoratorComponent constructor.
+     * @param $value
      */
-    public function __construct($dump)
+    public function __construct($value)
     {
-        $this->dump = $dump;
+        $this->value = $value;
         $this->initStyle();
     }
 
