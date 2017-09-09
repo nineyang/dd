@@ -3,7 +3,7 @@
 但是`Laravel`的`dd`函数设计的毕竟复杂，所以我就自己写了一个这样的包。
 
 ## 安装
-1. composer 安装()
+1. composer 安装(对象输出尚未写完)
 ```
 composer require nine/dd 
 ```
@@ -48,3 +48,8 @@ dd("hello,nine");
 ![Aaron Swartz](/tmp/function.png)
 
 4. object(todo)
+
+## todo
+1. object
+
+2. 点击小三角的特效
