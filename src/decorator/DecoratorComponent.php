@@ -82,10 +82,10 @@ abstract class DecoratorComponent
     }
 
     /**
-     * 添加css并转发给display
+     * 添加css并转发给wrap
      * @return mixed
      */
-    public function show()
+    public function addDecorator()
     {
 //        设置tag
         $parts = explode("\\", static::class);
@@ -94,7 +94,7 @@ abstract class DecoratorComponent
         $classStr = implode(' ', $this->classList);
         $this->_head = "<" . $class . " class='$classStr'>";
         $this->_tail = "</" . $class . ">";
-        return static::wrap();
+        return static::wrap(func_get_args());
     }
 
     /**

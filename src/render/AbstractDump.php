@@ -16,6 +16,19 @@ use ReflectionClass;
  */
 abstract class AbstractDump
 {
+    /**
+     * @var
+     */
+    public $value;
+
+    /**
+     * DumpString constructor.
+     * @param $value
+     */
+    public function __construct($value)
+    {
+        $this->value = $value;
+    }
 
     /**
      * @var array

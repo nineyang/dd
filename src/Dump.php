@@ -74,9 +74,4 @@ class Dump
         }
         static::$_instance->parse($value);
     }
-
-    protected function dispatch()
-    {
-
-    }
 }

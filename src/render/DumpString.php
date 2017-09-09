@@ -15,26 +15,11 @@ use dd\decorator\Span;
  */
 class DumpString extends AbstractDump
 {
-
-    /**
-     * @var
-     */
-    public $value;
-
-    /**
-     * DumpString constructor.
-     * @param $value
-     */
-    public function __construct($value)
-    {
-        $this->value = $value;
-    }
-
     /**
      *
      */
     public function render()
     {
-        $pDeorator = $this->p($this->span($this)->addClass('nine-span')->show())->show()->display();
+        $this->p($this->span($this)->addClass('nine-span')->addDecorator())->addDecorator()->display();
     }
 }

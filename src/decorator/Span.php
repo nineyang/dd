@@ -15,11 +15,13 @@ class Span extends DecoratorComponent
 {
 
     /**
+     * @param array $params
      * @return $this
      */
-    public function wrap()
+    public function wrap(Array $params = [])
     {
-        $this->value = $this->withQuota($this->noWrap($this->dump->value));
+        $params = empty($params) ? $params : array_pop($params);
+        $this->value = (array_key_exists('withQuota', $params) && $params['withQuota']) ? $this->withQuota($this->noWrap($this->dump->value)) : $this->noWrap($this->dump->value);
         return $this;
     }
 
