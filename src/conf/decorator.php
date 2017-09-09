@@ -19,7 +19,7 @@ return [
         'params' => ['withQuota' => false]
     ],
     '_rightBracket' => [
-        'value' => "[",
+        'value' => "]",
         'type' => 'span',
         'style' => ['nine-span', 'black-color'],
         'params' => ['withQuota' => false]

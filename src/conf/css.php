@@ -12,10 +12,12 @@ return [
     '.black-color' => "color:#333333",
     '.gray-color' => "color:#ccc",
     '.font-12' => 'font-size:12px',
+    '.font-15' => 'font-size:15px',
     '.depth-0' => 'margin-left:0px',
     '.depth-1' => 'margin-left:1rem',
     '.depth-2' => 'margin-left:2rem',
     '.depth-3' => 'margin-left:3rem',
     '.depth-4' => 'margin-left:4rem',
+    '.depth-5' => 'margin-left:5rem',
     '.nine-div' => 'margin-left:10px;margin-top:10px;'
 ];

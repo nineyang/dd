@@ -130,6 +130,9 @@ abstract class AbstractDump
      */
     protected function parseArr(array $arr, $depth = 1)
     {
+        if (empty($arr)) {
+            return [];
+        }
 //        首先导入array
         $returnArr = [];
         $returnArr[] = $this->returnValue("array:" . count($arr), 'span', ['nine-span'], ['withQuota' => false]);
@@ -138,6 +141,7 @@ abstract class AbstractDump
 //        导入一个▶
         $returnArr[] = $this->_triangle;
         $pushValue = "";
+
         foreach ($arr as $key => $value) {
             //            拼接key和value
             $key = $this->returnValue($key, 'span', ['nine-span'], ['withQuota' => is_int($key) ? false : true]);
@@ -151,8 +155,37 @@ abstract class AbstractDump
         //            外层包裹一个p
         $returnArr[] = $this->returnValue($pushValue, 'p', ["depth-" . $depth]);
         $devideSpan = $this->returnValue("", 'span', ["depth-" . ($depth - 1)], ['withQuota' => false]);
+
         $returnArr[] = $devideSpan . $this->_rightBracket;
         return $returnArr;
+    }
+
+    /**
+     * 反射解析函数的参数
+     * @param array $params
+     * @return array
+     */
+    protected function parseParams(Array $params)
+    {
+        $renderParams = [];
+        if (!empty($params)) {
+            foreach ($params as $param) {
+                $name = $this->returnValue($param->name, 'span', ['nine-span', 'font-15'], ['withQuota' => false]);
+                if ($param->isDefaultValueAvailable()) {
+                    $default = $this->_spaceOne .
+                        $this->returnValue(
+                            $param->getDefaultValue(),
+                            'span',
+                            ['nine-span', 'gray-color'],
+                            ['withQuota' => false]
+                        );
+                } else {
+                    $default = '';
+                }
+                $renderParams[] = $name . $default;
+            }
+        }
+        return $renderParams;
     }
 
     /**

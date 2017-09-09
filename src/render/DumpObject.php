@@ -27,33 +27,39 @@ class DumpObject extends AbstractDump
         }
     }
 
+    /**
+     * render 函数
+     */
     protected function renderClosure()
     {
         $reflectionFunc = new ReflectionFunction($this->value);
-        $renderParams = $this->parseParams($reflectionFunc->getParameters());
-
+        $renderParams = $this->parseArr(
+            $this->parseParams(
+                $reflectionFunc->getParameters()
+            ),
+            5
+        );
+        $title = $this->returnValue('Closure', 'span', ['nine-span'], ['withQuota' => false]);
+        $this->display(
+            [
+                $title,
+                $this->_leftBraces . "</br>",
+                $this->_spaceOne,
+                $this->returnValue('params', 'span', ['nine-span'], ['withQuota' => false]),
+                $this->_needle,
+                implode('', $renderParams) . "</br>",
+                $this->_rightBraces
+            ]
+        );
     }
 
+    /**
+     * render 对象
+     */
     protected function renderObject()
     {
 
     }
 
-
-    protected function parseParams(Array $params)
-    {
-        $renderParams = [];
-        if (!empty($params)) {
-            foreach ($params as $param) {
-                if ($param->isDefaultValueAvailable()) {
-                    $default = $param->getDefaultValue();
-                    var_dump($default);
-                } else {
-                    var_dump($param, $param->getClass());
-                }
-            }
-        }
-
-    }
 
 }
