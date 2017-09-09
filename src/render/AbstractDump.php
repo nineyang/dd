@@ -22,12 +22,55 @@ abstract class AbstractDump
     public $value;
 
     /**
+     * @return "["
+     * @var
+     */
+    public $_leftBracket;
+
+    /**
+     * @return "]"
+     * @var
+     */
+    public $_rightBracket;
+
+    /**
+     * @return "▶"
+     * @var
+     */
+    public $_triangle;
+
+    /**
+     * @return "▼"
+     * @var
+     */
+    public $_invertedTriangle;
+
+    /**
+     * @return "=>"
+     * @var
+     */
+    public $_needle;
+
+    /**
      * DumpString constructor.
      * @param $value
      */
     public function __construct($value)
     {
         $this->value = $value;
+        $this->init();
+    }
+
+    /**
+     * 初始化一些需要展示的内容
+     */
+    protected function init()
+    {
+        $this->_leftBracket = $this->returnValue("[", 'span', ['nine-span', 'black-color'], ['withQuota' => false]);
+        $this->_rightBracket = $this->returnValue("]", 'span', ['nine-span', 'black-color'], ['withQuota' => false]);
+        $this->_triangle = $this->returnValue("▶", 'span', ['nine-span', 'gray-color', 'font-12'], ['withQuota' => false]);
+        $this->_invertedTriangle = $this->returnValue("▼", 'span', ['nine-span', 'gray-color'], ['withQuota' => false]);
+        $this->_needle = $this->returnValue("=>", 'span', ['nine-span', 'black-color'], ['withQuota' => false]);
     }
 
     /**
@@ -42,7 +85,7 @@ abstract class AbstractDump
      * @param string $value
      * @return mixed
      */
-    public function returnValue($type, $classArr = [], $value = '', $params = [])
+    public function returnValue($value = '', $type = 'span', $classArr = ['nine-span'], $params = ['withQuota' => true])
     {
         return ($this->returnDecorator($type, $classArr, $value, $params))->value;
     }
@@ -68,19 +111,18 @@ abstract class AbstractDump
     }
 
     /**
-     * @param $type
+     * @param $value
+     * @param null $type
      * @param array $classArr
-     * @param string $value
      * @param array $params
      */
     public function display($value, $type = null, $classArr = [], $params = [])
     {
+        if (is_array($value)) $value = implode('', $value);
+//        如果为空就代表已经拼接好了，直接输出
         if (is_null($type)) {
             echo $value;
             die();
-        }
-        if (is_array($value)) {
-            $value = implode('', $value);
         }
         echo ($this->returnDecorator($type, $classArr, $value, $params))->display();
         die();

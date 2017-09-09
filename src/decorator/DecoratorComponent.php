@@ -50,8 +50,10 @@ abstract class DecoratorComponent
      */
     protected function initStyle()
     {
-        $config = require __DIR__ . '/../conf/css.php';
-        $styleStr = "<style>";
+        $config = require_once __DIR__ . '/../conf/css.php';
+//        防止重复加载
+        if ($config === true) return;
+        $styleStr = "<style>*{margin:0;padding:0}";
         if (!empty($config)) {
             foreach ($config as $k => $v) {
                 $styleStr .= $k . "{" . $v . "}";
@@ -95,6 +97,8 @@ abstract class DecoratorComponent
         $classStr = implode(' ', $this->classList);
         $this->_head = "<" . $class . " class='$classStr'>";
         $this->_tail = "</" . $class . ">";
+//        清空样式
+        $this->clearClass();
         return static::wrap(func_get_args());
     }
 

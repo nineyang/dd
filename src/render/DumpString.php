@@ -20,7 +20,7 @@ class DumpString extends AbstractDump
      */
     public function render()
     {
-        $span = $this->returnValue('span' , ['nine-span']);
+        $span = $this->returnValue();
         $this->display('p' , ['nine-p'] , $span);
     }
 }

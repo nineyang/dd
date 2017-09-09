@@ -11,4 +11,4 @@ require 'vendor/autoload.php';
 //\dd\Dump::dump('helloworld');
 
 //array
-\dd\Dump::dump(['hello', 'world']);
+\dd\Dump::dump(['hello', 'world' => 'nine']);
