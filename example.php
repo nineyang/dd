@@ -14,7 +14,7 @@ require 'vendor/autoload.php';
 //\dd\Dump::dump(['hello', 'world' => ['aa' , 'bb' => ['cc' , 'dd']]]);
 
 //function
-\dd\Dump::dump(function ($name = 'nine') {
+\dd\Dump::dump(function ($name = 'nine' , Closure $closure) {
     echo $name;
 });
 

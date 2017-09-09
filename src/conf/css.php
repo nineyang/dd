@@ -1,5 +1,7 @@
 <?php
 /**
+ * key 代表class
+ * value 代表class的属性
  * User: Nine
  * Date: 2017/9/6
  * Time: 下午10:24

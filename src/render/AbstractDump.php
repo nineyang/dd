@@ -19,48 +19,6 @@ abstract class AbstractDump
     public $value;
 
     /**
-     * @return "["
-     * @var
-     */
-    public $_leftBracket;
-
-    /**
-     * @return "]"
-     * @var
-     */
-    public $_rightBracket;
-
-    /**
-     * @return "▶"
-     * @var
-     */
-    public $_triangle;
-
-    /**
-     * @return "▼"
-     * @var
-     */
-    public $_invertedTriangle;
-
-    /**
-     * @return "=>"
-     * @var
-     */
-    public $_needle;
-
-    /**
-     * @return "{"
-     * @var
-     */
-    public $_leftBraces;
-
-    /**
-     * @return "}"
-     * @var
-     */
-    public $_rightBraces;
-
-    /**
      * DumpString constructor.
      * @param $value
      */
@@ -75,13 +33,27 @@ abstract class AbstractDump
      */
     protected function init()
     {
-        $this->_leftBracket = $this->returnValue("[", 'span', ['nine-span', 'black-color'], ['withQuota' => false]);
-        $this->_rightBracket = $this->returnValue("]", 'span', ['nine-span', 'black-color'], ['withQuota' => false]);
-        $this->_triangle = $this->returnValue("▶", 'span', ['nine-span', 'gray-color', 'font-12'], ['withQuota' => false]);
-        $this->_invertedTriangle = $this->returnValue("▼", 'span', ['nine-span', 'gray-color'], ['withQuota' => false]);
-        $this->_needle = $this->returnValue("=>", 'span', ['nine-span', 'black-color'], ['withQuota' => false]);
-        $this->_leftBraces = $this->returnValue("{", 'span', ['nine-span', 'black-color'], ['withQuota' => false]);
-        $this->_rightBraces = $this->returnValue("}", 'span', ['nine-span', 'black-color'], ['withQuota' => false]);
+        $config = require_once __DIR__ . '/../conf/decorator.php';
+        if ($config === true) return;
+
+        if (!empty($config)) {
+            foreach ($config as $key => $value) {
+                if (!array_key_exists('value', $value)) continue;
+                if (!array_key_exists('type', $value)) $value['type'] = 'span';
+                if (!array_key_exists('style', $value)) {
+                    $value['style'] = [];
+                } elseif (!is_array($value['style'])) {
+                    $value['style'] = [];
+                }
+                if (!array_key_exists('params', $value)) {
+                    $value['params'] = [];
+                } elseif (!is_array($value['params'])) {
+                    $value['params'] = [];
+                }
+//                invoke
+                $this->$key = $this->returnValue($value['value'], $value['type'], $value['style'], $value['params']);
+            }
+        }
     }
 
     /**

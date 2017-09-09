@@ -48,4 +48,10 @@ return [
         'style' => ['nine-span', 'black-color'],
         'params' => ['withQuota' => false]
     ],
+    '_spaceOne' => [
+        'value' => "",
+        'type' => 'span',
+        'style' => ['nine-span', 'depth-1'],
+        'params' => ['withQuota' => false]
+    ]
 ];
