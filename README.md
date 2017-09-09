@@ -48,5 +48,3 @@ dd("hello,nine");
 ![Aaron Swartz](/tmp/function.png)
 
 4. object(todo)
-
-![Aaron Swartz](/tmp/function.png)
