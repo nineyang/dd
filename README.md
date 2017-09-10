@@ -3,7 +3,7 @@
 但是`Laravel`的`dd`函数设计的毕竟复杂，所以我就自己写了一个这样的包。
 
 ## 安装
-1. composer 安装(对象输出尚未写完)
+1. composer 安装
 ```
 composer require nine/dd 
 ```
@@ -13,7 +13,7 @@ clone 下来即可。
 
 ## 使用
 
-1. 如果我在[exapmle.php](/example.php)中所写，我们既可以直接使用:
+1. 如我在[exapmle.php](/example.php)中所写，我们既可以直接使用:
 ```php
 \dd\Dump::dump('hello,nine');
 ```
@@ -47,9 +47,11 @@ dd("hello,nine");
 
 ![Aaron Swartz](/tmp/function.png)
 
-4. object(todo)
+4. object
+
+![Aaron Swartz](/tmp/object.png)
 
 ## todo
-1. object
+~~1. object~~
 
 2. 点击小三角的特效

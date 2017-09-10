@@ -48,10 +48,40 @@ return [
         'style' => ['nine-span', 'black-color'],
         'params' => ['withQuota' => false]
     ],
+    '_spaceZero' => [
+        'value' => "",
+        'type' => 'span',
+        'style' => ['nine-span', 'depth-0'],
+        'params' => ['withQuota' => false]
+    ],
     '_spaceOne' => [
         'value' => "",
         'type' => 'span',
         'style' => ['nine-span', 'depth-1'],
         'params' => ['withQuota' => false]
-    ]
+    ],
+    '_spaceTwo' => [
+        'value' => "",
+        'type' => 'span',
+        'style' => ['nine-span', 'depth-2'],
+        'params' => ['withQuota' => false]
+    ],
+    '_spaceThree' => [
+        'value' => "",
+        'type' => 'span',
+        'style' => ['nine-span', 'depth-3'],
+        'params' => ['withQuota' => false]
+    ],
+    '_spaceFour' => [
+        'value' => "",
+        'type' => 'span',
+        'style' => ['nine-span', 'depth-4'],
+        'params' => ['withQuota' => false]
+    ],
+    '_spaceFive' => [
+        'value' => "",
+        'type' => 'span',
+        'style' => ['nine-span', 'depth-5'],
+        'params' => ['withQuota' => false]
+    ],
 ];
