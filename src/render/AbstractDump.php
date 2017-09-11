@@ -121,6 +121,7 @@ abstract class AbstractDump
         }
 
         $divDecorator->display();
+        die();
     }
 
     /**
