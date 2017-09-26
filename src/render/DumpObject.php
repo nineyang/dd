@@ -8,6 +8,7 @@
 namespace dd\render;
 
 use Closure;
+use function dd\dd;
 use ReflectionFunction;
 use ReflectionObject;
 
@@ -90,17 +91,23 @@ class DumpObject extends AbstractDump
                     ['withQuota' => false]
                 );
                 $name = $scope . $this->returnValue($property->name, 'span', ['nine-span', 'font-15'], ['withQuota' => false]);
-                if (isset($defaultProperties[$property->name])) {
-                    $default = $this->_spaceOne .
-                        $this->returnValue(
-                            $defaultProperties[$property->name],
-                            'span',
-                            ['nine-span', 'gray-color'],
-                            ['withQuota' => false]
-                        );
+//                先获取设置的值
+                $property->setAccessible(true);
+                if ($currValue = $property->getValue($this->value)) {
+                    $default = $currValue;
+//                再获取默认值
+                } elseif (isset($defaultProperties[$property->name])) {
+                    $default = $defaultProperties[$property->name];
                 } else {
                     $default = '';
                 }
+                $default = $this->_spaceOne .
+                    $this->returnValue(
+                        $default,
+                        'span',
+                        ['nine-span', 'gray-color'],
+                        ['withQuota' => false]
+                    );
                 $renderProperties[] = $name . $default . "</br>";
             }
         }
@@ -116,7 +123,7 @@ class DumpObject extends AbstractDump
                     ['withQuota' => false]
                 );
 //                获取一个闭包，来使用共同的getFunc组件
-                $renderMethods[] = $scope . implode('', $this->getFunc($method->getClosure($this->value), $method->name , 1)) . "</br>";
+                $renderMethods[] = $scope . implode('', $this->getFunc($method->getClosure($this->value), $method->name, 1)) . "</br>";
             }
         }
         $this->display(

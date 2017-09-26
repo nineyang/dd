@@ -23,9 +23,10 @@ require 'vendor/autoload.php';
 //object
 //\dd\Dump::dump(new stdClass());
 
-class Student{
-    public $name = 'nine';
-    protected $age = 18;
+class Student
+{
+    public $name = 'seven';
+    protected $age;
     private $sex = 'male';
 
     /**
@@ -43,6 +44,14 @@ class Student{
     {
         $this->name = $name;
     }
+
+    /**
+     * @param $age
+     */
+    public function setAge($age)
+    {
+        $this->age = $age;
+    }
 }
 
 
@@ -57,5 +66,7 @@ function dd($value)
 //    echo $a;
 //});
 
-dd(new Student());
-
+$student = new Student();
+$student->name = 'nine';
+$student->setAge(10);
+dd($student);
